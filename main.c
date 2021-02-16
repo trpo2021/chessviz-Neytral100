@@ -4,47 +4,43 @@
 
 int main()
 {
-    char* board;
-    board = board_init();
-    board_output(board);
+    struct piece board[8][8];
+    board_init(&board[0][0]);
+    // board_output(board);
     return 0;
 }
 
-char* board_init()
+void board_init(struct piece* board)
 {
-    char* board = calloc(64, sizeof(char));
-    char i;
-
-    for (i = 8; i <= 15; i++)
-        *(board + i) = 'P';
-
-    for (i = 48; i <= 55; i++)
-        *(board + i) = 'p';
-
-    *(board + 0) = 'R';
-    *(board + 1) = 'N';
-    *(board + 2) = 'B';
-    *(board + 3) = 'Q';
-    *(board + 4) = 'K';
-    *(board + 5) = 'B';
-    *(board + 6) = 'N';
-    *(board + 7) = 'R';
-    *(board + 56) = 'r';
-    *(board + 57) = 'n';
-    *(board + 58) = 'b';
-    *(board + 59) = 'q';
-    *(board + 60) = 'k';
-    *(board + 61) = 'b';
-    *(board + 62) = 'n';
-    *(board + 63) = 'r';
-
-    for (i = 16; i < 48; i++) {
-        *(board + i) = ' ';
+    for (int x = 0; x <= 7; x++) {
+        (board + 1 * 8 + x)->color = BLACK;
+        (board + 2 * 8 + x)->color = BLACK;
+        (board + 6 * 8 + x)->color = WHITE;
+        (board + 7 * 8 + x)->color = WHITE;
     }
+    (board + 0 * 8 + 0)->shape = ROOK;
+    (board + 0 * 8 + 7)->shape = ROOK;
+    (board + 7 * 8 + 0)->shape = ROOK;
+    (board + 7 * 8 + 7)->shape = ROOK;
 
-    return board;
+    (board + 0 * 8 + 1)->shape = KNIGHT;
+    (board + 0 * 8 + 6)->shape = KNIGHT;
+    (board + 7 * 8 + 1)->shape = KNIGHT;
+    (board + 7 * 8 + 6)->shape = KNIGHT;
+
+    (board + 0 * 8 + 2)->shape = BISHOP;
+    (board + 0 * 8 + 5)->shape = BISHOP;
+    (board + 7 * 8 + 2)->shape = BISHOP;
+    (board + 7 * 8 + 5)->shape = BISHOP;
+
+    (board + 0 * 8 + 3)->shape = QUEEN;
+    (board + 7 * 8 + 3)->shape = QUEEN;
+
+    (board + 0 * 8 + 4)->shape = KING;
+    (board + 7 * 8 + 4)->shape = KING;
 }
 
+/*
 void board_output(char* board)
 {
     FILE* pFileBoard = fopen("Сhessboard.txt", "w");
@@ -70,3 +66,4 @@ void board_output(char* board)
 
     fclose(pFileBoard);
 }
+*/

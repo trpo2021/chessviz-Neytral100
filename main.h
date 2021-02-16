@@ -7,5 +7,5 @@ struct piece {
     enum Shape shape;
 } piece;
 
-char* board_init();
+void board_init(struct piece* board);
 void board_output(char*);
