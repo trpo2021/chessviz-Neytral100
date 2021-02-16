@@ -1,8 +1,6 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-char* board_init();
-void board_output(char*);
 
 int main()
 {
@@ -40,7 +38,7 @@ char* board_init()
     *(board + 62) = 'n';
     *(board + 63) = 'r';
 
-    for (i = 16; i < 48; i++){
+    for (i = 16; i < 48; i++) {
         *(board + i) = ' ';
     }
 
