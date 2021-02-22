@@ -1,64 +1,101 @@
 #include "main.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
-    struct piece board[8][8];
-    board_init(&board[0][0]);
-    // board_output(board);
+    Cell myboard[64];
+
+    board_init(myboard);
+    board_output(myboard);
+
     return 0;
 }
 
-void board_init(struct piece* board)
+void board_init(Cell* board)
 {
-    for (int x = 0; x <= 7; x++) {
-        (board + 1 * 8 + x)->color = BLACK;
-        (board + 2 * 8 + x)->color = BLACK;
-        (board + 6 * 8 + x)->color = WHITE;
-        (board + 7 * 8 + x)->color = WHITE;
+    for (int i = 0; i < 64; i++) {
+        (board + i)->piece = NULL;
     }
-    (board + 0 * 8 + 0)->shape = ROOK;
-    (board + 0 * 8 + 7)->shape = ROOK;
-    (board + 7 * 8 + 0)->shape = ROOK;
-    (board + 7 * 8 + 7)->shape = ROOK;
+    for (int i = 0; i < 16; i++) {
+        (board + i)->piece = malloc(sizeof(Piece));
+    }
+    for (int i = 48; i < 64; i++) {
+        (board + i)->piece = malloc(sizeof(Piece));
+    }
+    for (int x = 0; x <= 7; x++) {
+        (board + 0 * 8 + x)->piece->color = BLACK;
+        (board + 1 * 8 + x)->piece->color = BLACK;
+        (board + 6 * 8 + x)->piece->color = WHITE;
+        (board + 7 * 8 + x)->piece->color = WHITE;
+        (board + 1 * 8 + x)->piece->shape = PAWN;
+        (board + 6 * 8 + x)->piece->shape = PAWN;
+    }
+    (board + 0 * 8 + 0)->piece->shape = ROOK;
+    (board + 0 * 8 + 7)->piece->shape = ROOK;
+    (board + 7 * 8 + 0)->piece->shape = ROOK;
+    (board + 7 * 8 + 7)->piece->shape = ROOK;
 
-    (board + 0 * 8 + 1)->shape = KNIGHT;
-    (board + 0 * 8 + 6)->shape = KNIGHT;
-    (board + 7 * 8 + 1)->shape = KNIGHT;
-    (board + 7 * 8 + 6)->shape = KNIGHT;
+    (board + 0 * 8 + 1)->piece->shape = KNIGHT;
+    (board + 0 * 8 + 6)->piece->shape = KNIGHT;
+    (board + 7 * 8 + 1)->piece->shape = KNIGHT;
+    (board + 7 * 8 + 6)->piece->shape = KNIGHT;
 
-    (board + 0 * 8 + 2)->shape = BISHOP;
-    (board + 0 * 8 + 5)->shape = BISHOP;
-    (board + 7 * 8 + 2)->shape = BISHOP;
-    (board + 7 * 8 + 5)->shape = BISHOP;
+    (board + 0 * 8 + 2)->piece->shape = BISHOP;
+    (board + 0 * 8 + 5)->piece->shape = BISHOP;
+    (board + 7 * 8 + 2)->piece->shape = BISHOP;
+    (board + 7 * 8 + 5)->piece->shape = BISHOP;
 
-    (board + 0 * 8 + 3)->shape = QUEEN;
-    (board + 7 * 8 + 3)->shape = QUEEN;
+    (board + 0 * 8 + 3)->piece->shape = QUEEN;
+    (board + 7 * 8 + 3)->piece->shape = QUEEN;
 
-    (board + 0 * 8 + 4)->shape = KING;
-    (board + 7 * 8 + 4)->shape = KING;
+    (board + 0 * 8 + 4)->piece->shape = KING;
+    (board + 7 * 8 + 4)->piece->shape = KING;
 }
 
-/*
-void board_output(char* board)
+char interpret(Cell* choosecell)
+{
+    char output_piece;
+    if (choosecell->piece == NULL)
+        output_piece = ' ';
+    else {
+        if (choosecell->piece->shape == ROOK)
+            output_piece = 'r';
+        else if (choosecell->piece->shape == KNIGHT)
+            output_piece = 'n';
+        else if (choosecell->piece->shape == BISHOP)
+            output_piece = 'b';
+        else if (choosecell->piece->shape == QUEEN)
+            output_piece = 'q';
+        else if (choosecell->piece->shape == KING)
+            output_piece = 'k';
+        else if (choosecell->piece->shape == PAWN)
+            output_piece = 'p';
+        if (choosecell->piece->color == BLACK)
+            output_piece = toupper(output_piece);
+    }
+    return output_piece;
+}
+
+void board_output(Cell* board)
 {
     FILE* pFileBoard = fopen("Сhessboard.txt", "w");
     if (pFileBoard == NULL) {
         printf("Error with open the file");
         return;
     }
-    int i;
-    int j = 8;
-    for (i = 1; i <= 64; i++) {
-        fprintf(pFileBoard, "%c ", *(board + i - 1));
-        if ((i % 8) == 0) {
-            fprintf(pFileBoard, "%d ", j);
-            j--;
-        }
-        if ((i % 8) == 0)
-            fprintf(pFileBoard, "\n");
+
+    int numberofline = 8;
+    for (int y = 0; y <= 7; y++) {
+        fprintf(pFileBoard, "%d ", numberofline);
+        numberofline--;
+        for (int x = 0; x <= 7; x++)
+            fprintf(pFileBoard, "%c ", interpret(board + y * 8 + x));
+        fprintf(pFileBoard, "\n");
     }
+
+    fprintf(pFileBoard, "  ");
     char c;
     for (c = 'a'; c <= 'h'; c++)
         fprintf(pFileBoard, "%c ", c);
@@ -66,4 +103,3 @@ void board_output(char* board)
 
     fclose(pFileBoard);
 }
-*/

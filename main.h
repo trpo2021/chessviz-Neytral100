@@ -1,11 +1,16 @@
-enum Shape { KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN };
+typedef enum Shape { KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN } Shape;
 
-enum Color { WHITE, BLACK };
+typedef enum Color { WHITE, BLACK } Color;
 
-struct piece {
-    enum Color color;
-    enum Shape shape;
-} piece;
+typedef struct chess_piece {
+    Color color;
+    Shape shape;
+} Piece;
 
-void board_init(struct piece* board);
-void board_output(char*);
+typedef struct chess_cell {
+    Piece* piece;
+} Cell;
+
+void board_init(Cell* board);
+void board_output(Cell* board);
+char interpret(Cell* choosecell);
