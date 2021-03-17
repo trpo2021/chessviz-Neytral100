@@ -1,5 +1,5 @@
-#include "main.h"
 #include <ctype.h>
+#include <libchessviz/main.h>
 #include <stdio.h>
 #include <stdlib.h>
 
