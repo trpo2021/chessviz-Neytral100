@@ -6,16 +6,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void board_print(Cell* board);
-char interpret(Cell* choosecell);
-void board_init(Cell* board);
-
 int main()
 {
-    Cell myboard[NUM_OF_CELLS_IN_BOARD];
+    Cell my_board[NUM_OF_CELLS_IN_BOARD];
 
-    board_init(myboard);
-    board_print(myboard);
+    board_init(my_board);
+    board_print(my_board);
 
     return 0;
 }
