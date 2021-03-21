@@ -1,5 +1,3 @@
-//#include "../src/libchessviz/board.h"
-
 #include <libchessviz/board.h>
 #include <libchessviz/board_print.h>
 #include <libchessviz/struct.h>
@@ -12,6 +10,7 @@ int main()
 
     board_init(my_board);
     board_print(my_board);
+    board_free(my_board);
 
     return 0;
 }

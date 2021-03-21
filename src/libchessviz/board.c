@@ -42,3 +42,9 @@ void board_init(Cell* board)
     (board + 0 * NUM_OF_ROWS + 4)->piece->shape = ShapeKing;
     (board + 7 * NUM_OF_ROWS + 4)->piece->shape = ShapeKing;
 }
+
+void board_free(Cell* board)
+{
+    for (int i = 0; i < NUM_OF_CELLS_IN_BOARD; i++)
+        free((board + i)->piece);
+}
