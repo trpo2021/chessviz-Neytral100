@@ -12,7 +12,7 @@ void board_init(Cell* board);
 
 int main()
 {
-    Cell myboard[64];
+    Cell myboard[NUM_OF_CELLS_IN_BOARD];
 
     board_init(myboard);
     board_print(myboard);

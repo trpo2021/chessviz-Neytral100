@@ -11,12 +11,12 @@ void board_print(Cell* board)
         return;
     }
 
-    int numberofline = 8;
-    for (int y = 0; y <= 7; y++) {
+    int numberofline = NUM_OF_ROWS;
+    for (int y = 0; y < NUM_OF_ROWS; y++) {
         fprintf(pFileBoard, "%d ", numberofline);
         numberofline--;
-        for (int x = 0; x <= 7; x++)
-            fprintf(pFileBoard, "%c ", interpret(board + y * 8 + x));
+        for (int x = 0; x < NUM_OF_ROWS; x++)
+            fprintf(pFileBoard, "%c ", interpret(board + y * NUM_OF_ROWS + x));
         fprintf(pFileBoard, "\n");
     }
 
