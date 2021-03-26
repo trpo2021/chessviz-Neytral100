@@ -23,14 +23,14 @@ typedef enum {
 } XCoord;
 
 typedef enum {
-    YCoord1 = 0,
-    YCoord2 = 1,
-    YCoord3 = 2,
-    YCoord4 = 3,
-    YCoord5 = 4,
-    YCoord6 = 5,
-    YCoord7 = 6,
-    YCoord8 = 7,
+    YCoord1 = 7,
+    YCoord2 = 6,
+    YCoord3 = 5,
+    YCoord4 = 4,
+    YCoord5 = 3,
+    YCoord6 = 2,
+    YCoord7 = 1,
+    YCoord8 = 0,
 } YCoord;
 
 typedef enum {
@@ -45,7 +45,7 @@ typedef enum {
     ResultMoveNoResult,
 } ResultMove;
 
-typedef struct {
+typedef struct Move {
     Shape shape;
     XCoord start_x;
     YCoord start_y;
@@ -53,12 +53,8 @@ typedef struct {
     YCoord end_y;
     ActionType action_type;
     ResultMove result_move;
+    struct Move* next;
 } Move;
-
-typedef struct List {
-    Move* move;
-    struct List* next;
-} List;
 
 typedef struct {
     Color color;
