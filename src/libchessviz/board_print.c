@@ -12,7 +12,7 @@ void board_print(Cell* board)
     }
 
     int number_of_line = NUM_OF_ROWS;
-    for (int y = 0; y < NUM_OF_ROWS; y++) {
+    for (int y = NUM_OF_ROWS - 1; y >= 0; y--) {
         fprintf(p_file_board, "%d ", number_of_line);
         number_of_line--;
         for (int x = 0; x < NUM_OF_ROWS; x++)
@@ -49,7 +49,7 @@ char interpret(Cell* choose_cell)
             output_piece = 'k';
         else if (choose_cell->piece->shape == ShapePawn)
             output_piece = 'p';
-        if (choose_cell->piece->color == ColorBlack)
+        if (choose_cell->piece->color == ColorWhite)
             output_piece = toupper(output_piece);
     }
     return output_piece;

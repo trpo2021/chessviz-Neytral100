@@ -14,10 +14,10 @@ void board_init(Cell* board)
         (board + i)->piece = malloc(sizeof(Piece));
     }
     for (int x = 0; x < NUM_OF_ROWS; x++) {
-        (board + 0 * NUM_OF_ROWS + x)->piece->color = ColorBlack;
-        (board + 1 * NUM_OF_ROWS + x)->piece->color = ColorBlack;
-        (board + 6 * NUM_OF_ROWS + x)->piece->color = ColorWhite;
-        (board + 7 * NUM_OF_ROWS + x)->piece->color = ColorWhite;
+        (board + 0 * NUM_OF_ROWS + x)->piece->color = ColorWhite;
+        (board + 1 * NUM_OF_ROWS + x)->piece->color = ColorWhite;
+        (board + 6 * NUM_OF_ROWS + x)->piece->color = ColorBlack;
+        (board + 7 * NUM_OF_ROWS + x)->piece->color = ColorBlack;
         (board + 1 * NUM_OF_ROWS + x)->piece->shape = ShapePawn;
         (board + 6 * NUM_OF_ROWS + x)->piece->shape = ShapePawn;
     }
