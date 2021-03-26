@@ -15,6 +15,11 @@ int processing(Cell* board, struct Move* move, Color color)
 
 int checking_for_errors(Cell* board, struct Move* move, Color color)
 {
+    if (selecting(board, move)->piece == NULL) {
+        printf("Error, the selected cell is epmty\n");
+        return -1;
+    }
+
     if (selecting(board, move)->piece->color != color) {
         printf("Error, the selected piece is a different color\n");
         return -1;
