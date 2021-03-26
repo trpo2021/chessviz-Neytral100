@@ -1,3 +1,4 @@
+#include <libchessviz/piece_check.h>
 #include <libchessviz/processing.h>
 #include <libchessviz/struct.h>
 #include <stdio.h>
@@ -22,21 +23,8 @@ int checking_for_errors(Cell* board, struct Move* move, Color color)
         printf("Error, the selected piece is a different shape\n");
         return -1;
     }
-    if (selecting(board, move)->piece->color == ColorBlack) {
-        int check_for_black_pawn_coord;
-        check_for_black_pawn_coord = (move->start_y) - (move->end_y);
-        if (check_for_black_pawn_coord != -1) {
-            printf("Error, the selected Pawn can't walk this way\n");
-            return -1;
-        }
-    }
-    if (selecting(board, move)->piece->color == ColorWhite) {
-        int check_for_white_pawn_coord;
-        check_for_white_pawn_coord = (move->start_y) - (move->end_y);
-        if (check_for_white_pawn_coord != 1) {
-            printf("Error, the selected Pawn can't walk this way\n");
-            return -1;
-        }
+    if (move->shape == ShapePawn) {
+        return pawn_check(move, color);
     }
 
     /*
