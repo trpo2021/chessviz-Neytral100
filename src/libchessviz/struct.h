@@ -23,14 +23,14 @@ typedef enum {
 } XCoord;
 
 typedef enum {
-    YCoord1 = 7,
-    YCoord2 = 6,
-    YCoord3 = 5,
-    YCoord4 = 4,
-    YCoord5 = 3,
-    YCoord6 = 2,
-    YCoord7 = 1,
-    YCoord8 = 0,
+    YCoord1 = 0,
+    YCoord2 = 1,
+    YCoord3 = 2,
+    YCoord4 = 3,
+    YCoord5 = 4,
+    YCoord6 = 5,
+    YCoord7 = 6,
+    YCoord8 = 7,
 } YCoord;
 
 typedef enum {
